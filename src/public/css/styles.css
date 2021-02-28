@@ -1,0 +1,36 @@
+body {
+  background: #f1eeee;
+}
+
+.login-form {
+  box-shadow: 0 0px 8px 0 grey, 0 0px 8px 0 lightgrey;
+  padding: 30px;
+  border-radius: 25px;
+  background: white;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  #navbarNavDropdown {
+    width: auto;
+    position: absolute;
+    right: 20px;
+  }
+}
+
+.index-container {
+  box-shadow: 0 0px 8px 0 lightgrey, 0 0px 8px 0 lightgrey;
+  border-radius: 25px;
+}
+
+.btn-container {
+  width: max-content;
+}
+
+.title {
+  border-radius: 25px;
+}
