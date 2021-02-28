@@ -4,7 +4,7 @@ USE alkemy_challenge_db;
 
 CREATE TABLE users(
     id INT(11) NOT NULL AUTO_INCREMENT,
-    email VARCHAR(16) NOT NULL,
+    email VARCHAR(150) NOT NULL,
     password VARCHAR(60) NOT NULL,
     fullname VARCHAR(100) NOT NULL,
     balance INT(11) NOT NULL,

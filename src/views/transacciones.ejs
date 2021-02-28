@@ -8,12 +8,14 @@
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
     <%- include('./partials/header') %>
     <%- include('./partials/messages') %>
+
+    <h1 class="text-center"><%= h1 %></h1>
 
     <div class="container p-3 index-container bg-light mt-5">
         <div class="row">
@@ -24,36 +26,13 @@
                         <th>Monto</th>
                         <th>Tipo de movimiento</th>
                     </tr>
+                    <% transactions.forEach( (transaction) => { %>
                     <tr>
-                        <td>1/1/21</td>
-                        <td>$10000</td>
-                        <td>Deposito</td>
+                        <td><%= transaction.date %></td>
+                        <td>$<%= transaction.amount %></td>
+                        <td><%= transaction.type %></td>
                     </tr>
-                    <tr>
-                        <td>1/1/21</td>
-                        <td>$10000</td>
-                        <td>Extraccion</td>
-                    </tr>
-                    <tr>
-                        <td>1/1/21</td>
-                        <td>$10000</td>
-                        <td>Extraccion</td>
-                    </tr>
-                    <tr>
-                        <td>1/1/21</td>
-                        <td>$10000</td>
-                        <td>Deposito</td>
-                    </tr>
-                    <tr>
-                        <td>1/1/21</td>
-                        <td>$10000</td>
-                        <td>Extraccion</td>
-                    </tr>
-                    <tr>
-                        <td>1/1/21</td>
-                        <td>$10000</td>
-                        <td>Deposito</td>
-                    </tr>
+                    <% }) %>
                 </table>
             </div>
         </div>

@@ -34,3 +34,7 @@ nav {
 .title {
   border-radius: 25px;
 }
+
+a{
+  text-decoration: none;
+}

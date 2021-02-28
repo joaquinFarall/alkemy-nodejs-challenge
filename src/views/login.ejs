@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <%- include('./partials/header') %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Alkemy Labs</a>
+        </div>
+    </nav>
     <%- include('./partials/messages') %>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6 m-auto">
@@ -22,8 +27,11 @@
                     <div class="input-group mb-3">
                         <input name="password" type="password" class="form-control" placeholder="Password"> 
                     </div>
-                    <div class="input-group d-grid gap-2">
+                    <div class="input-group mb-2 d-grid gap-2">
                         <button class="btn btn-primary">Login</button>
+                    </div>
+                    <div class="input-group">
+                        <span>Don't have an account? <a href="/signup">sign up!</a></span>
                     </div>
                 </form>
             </div>
