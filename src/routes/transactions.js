@@ -37,7 +37,7 @@ router.get('/home', async (req, res) => {
 
     let user = req.session.user;
 
-    let query = 'SELECT * FROM transactions WHERE user_id = ? ORDER BY date DESC limit 10';
+    let query = 'SELECT * FROM transactions WHERE user_id = ? ORDER BY id DESC limit 10';
     
     let transactions = await pool.query(query, [user.id]);
     
