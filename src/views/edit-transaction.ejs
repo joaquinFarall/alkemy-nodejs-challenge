@@ -23,7 +23,7 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text" style="padding: 6px 20px">$</div>
                 </div>
-                <input name="amount" type="number" class="form-control" value="<%= transaction.amount %>" required />
+                <input name="amount" type="number" class="form-control" value="<%= transaction.amount %>" maxlength="11" required />
               </div>
               <div class="input-group mb-3">
                 <textarea name="concept" class="form-control w-100" rows="3" required>
