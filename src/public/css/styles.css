@@ -35,6 +35,12 @@ nav {
   border-radius: 25px;
 }
 
-a{
+a {
   text-decoration: none;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
