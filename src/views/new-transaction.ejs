@@ -1,87 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New transaction</title>
-    <!-- BOOTSTRAP -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
 
-  <body>
-    <%- include('./partials/header') %> <%- include('./partials/messages') %>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 m-auto">
-          <h1 class="m-4 text-center">New transaction</h1>
-          <form class="login-form" action="/transactions/new" method="POST">
-            <span>Write the amount to deposit/extract</span>
-            <div class="input-group mb-3 mt-4">
-              <div class="input-group-prepend">
-                <div class="input-group-text" style="padding: 6px 20px">$</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New transaction</title>
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+  <%- include('./partials/header') %>
+    <%- include('./partials/messages') %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 m-auto">
+            <h1 class="m-4 text-center">New transaction</h1>
+            <form class="login-form" action="/transactions/new" method="POST">
+              <span>Write the amount to deposit/extract</span>
+              <div class="input-group mb-3 mt-4">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style="padding: 6px 20px">$</div>
+                </div>
+                <input name="amount" type="number" class="form-control" placeholder="Ex: 10000" required />
               </div>
-              <input
-                name="amount"
-                type="number"
-                class="form-control"
-                placeholder="Ex: 10000"
-                required
-              />
-            </div>
-            <div class="input-group mb-3">
-              <textarea
-                name="concept"
-                class="form-control w-100"
-                rows="3"
-                placeholder="Concept of the transaction"
-                required
-              ></textarea>
-            </div>
-            <div class="input-group mb-3">
-              <select
-                name="type"
-                class="form-select custom-select p-1 w-100"
-                required
-              >
-                <option selected class="muted">
-                  Select transaction's type
-                </option>
-                <option value="deposit">deposit</option>
-                <option value="extraction">extraction</option>
-              </select>
-            </div>
-            <div class="input-group mb-2">
-              <span>When did the transaction took place?</span>
-            </div>
-            <div class="input-group mb-3">
-              <input
-                name="date"
-                type="text"
-                class="form-control"
-                placeholder="Use yyyy-mm-dd format. Example: 2021-01-01"
-                required
-                maxlength="10"
-              />
-            </div>
-            <div class="input-group d-grid gap-2">
-              <button class="btn btn-primary">Create transaction</button>
-            </div>
-          </form>
+              <div class="input-group mb-3">
+                <textarea name="concept" class="form-control w-100" rows="3" placeholder="Concept of the transaction"
+                  required></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <select name="type" class="form-select custom-select p-1 w-100" required>
+                  <option selected class="muted">
+                    Select transaction's type
+                  </option>
+                  <option value="deposit">deposit</option>
+                  <option value="extraction">extraction</option>
+                </select>
+              </div>
+              <div class="input-group mb-2">
+                <span>When did the transaction took place?</span>
+              </div>
+              <div class="input-group mb-3">
+                <input name="date" type="text" class="form-control"
+                  placeholder="Use yyyy-mm-dd format. Example: 2021-01-01" required maxlength="10" />
+              </div>
+              <div class="input-group d-grid gap-2">
+                <button class="btn btn-primary">Create transaction</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- BOOTSTRAP -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+      <!-- BOOTSTRAP -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

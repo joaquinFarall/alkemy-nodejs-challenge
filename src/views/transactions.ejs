@@ -1,71 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transactions</title>
-    <!-- BOOTSTRAP -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
 
-  <body>
-    <%- include('./partials/header') %> <%- include('./partials/messages') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transactions</title>
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
 
-    <h1 class="text-center"><%= h1 %></h1>
+<body>
+  <%- include('./partials/header') %>
+    <%- include('./partials/messages') %>
 
-    <div class="container p-3 index-container bg-light mt-5 mb-3">
-      <% if(transactions.length > 0){ %>
-      <div class="row">
-        <div class="col-md-12">
-          <table class="table table-light table-hover">
-            <tr>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Concept</th>
-              <th>Type of transaction</th>
-              <th>Actions</th>
-            </tr>
-            <% transactions.forEach( (transaction) => { %>
-            <tr>
-              <td><%= transaction.date %></td>
-              <td>$<%= transaction.amount %></td>
-              <td><%= transaction.concept %></td>
-              <td><%= transaction.type %></td>
-              <td>
-                <a
-                  href="/transactions/edit/<%= transaction.id %>"
-                  class="btn btn-primary"
-                  >Edit</a
-                >
-                <a
-                  href="/transactions/delete/<%= transaction.id %>"
-                  class="btn btn-danger"
-                  >Delete</a
-                >
-              </td>
-            </tr>
-            <% }) %>
-          </table>
-        </div>
+      <h1 class="text-center">
+        <%= h1 %>
+      </h1>
+
+      <div class="container p-3 index-container bg-light mt-5 mb-3">
+        <% if(transactions.length> 0){ %>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-light table-hover">
+                <tr>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Concept</th>
+                  <th>Type of transaction</th>
+                  <th>Actions</th>
+                </tr>
+                <% transactions.forEach( (transaction)=> { %>
+                  <tr>
+                    <td>
+                      <%= transaction.date %>
+                    </td>
+                    <td>$<%= transaction.amount %>
+                    </td>
+                    <td>
+                      <%= transaction.concept %>
+                    </td>
+                    <td>
+                      <%= transaction.type %>
+                    </td>
+                    <td>
+                      <a href="/transactions/edit/<%= transaction.id %>" class="btn btn-primary">Edit</a>
+                      <a href="/transactions/delete/<%= transaction.id %>" class="btn btn-danger">Delete</a>
+                    </td>
+                  </tr>
+                  <% }) %>
+              </table>
+            </div>
+          </div>
+          <% }else {%>
+            <div class="row p-4">
+              <h4 class="text-center">No register transactions yet</h4>
+            </div>
+            <% }%>
       </div>
-      <% }else {%>
-      <div class="row p-4">
-        <h4 class="text-center">No register transactions yet</h4>
-      </div>
-      <% }%>
-    </div>
 
-    <!-- BOOTSTRAP -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+      <!-- BOOTSTRAP -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
