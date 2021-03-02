@@ -139,6 +139,27 @@ router.get('/transactions/edit/:id', async (req, res) => {
 router.get('/transactions/delete/:id', async (req, res) => {
     let {id} = req.params;
 
+    let user = req.session.user;
+
+    // update user's balance with the deleted transaction's amount
+    let oldTransaction = await pool.query('SELECT * FROM transactions WHERE id = ?', [id]);
+    
+    let balance = parseFloat(user.balance);
+
+    if(oldTransaction[0].type == 'deposit'){
+
+        balance = balance - parseFloat(oldTransaction[0].amount);
+        
+    }else if(oldTransaction[0].type == 'extraction'){
+
+        balance = balance + parseFloat(oldTransaction[0].amount);
+
+    }
+    
+    req.session.user.balance = balance;
+    await pool.query('UPDATE users SET balance = '+ balance +' WHERE id = ?', [user.id]);
+
+    // delete transaction
     let query = 'DELETE FROM transactions WHERE id = ?';
 
     await pool.query(query, [id]);
@@ -214,6 +235,30 @@ router.post('/transactions/edit/:id', async (req, res) => {
         return res.redirect('/transactions/edit/'+id);
     }
 
+    let user = req.session.user;
+
+    // update user's balance with the new transaction's amount
+    let oldTransaction = await pool.query('SELECT * FROM transactions WHERE id = ?', [id]);
+    
+    let balance = parseFloat(user.balance);
+
+    if(oldTransaction[0].type == 'deposit'){
+
+        let diff = parseFloat(oldTransaction[0].amount) - parseFloat(amount);
+    
+        balance = balance - diff;
+        
+    }else if(oldTransaction[0].type == 'extraction'){
+
+        let diff = parseFloat(oldTransaction[0].amount) - parseFloat(amount);
+        balance = balance + diff;
+
+    }
+    
+    req.session.user.balance = balance;
+    await pool.query('UPDATE users SET balance = '+ balance +' WHERE id = ?', [user.id]);
+
+    // update transaction
     let query = 'UPDATE transactions SET concept = ?, amount = ?, date = ? WHERE id = ?';
 
     await pool.query(query, [concept, amount, date, id]);
