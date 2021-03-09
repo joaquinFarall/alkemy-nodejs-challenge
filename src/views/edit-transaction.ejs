@@ -23,7 +23,8 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text" style="padding: 6px 20px">$</div>
                 </div>
-                <input name="amount" type="number" class="form-control" value="<%= transaction.amount %>" maxlength="11" required />
+                <input name="amount" type="number" class="form-control" value="<%= transaction.amount %>" maxlength="11"
+                  required />
               </div>
               <div class="input-group mb-3">
                 <textarea name="concept" class="form-control w-100" rows="3" required>
@@ -31,12 +32,16 @@
               </div>
               <div class="input-group mb-3">
                 <select name="category" class="form-select custom-select p-1 w-100" required>
-                  <option value="food" <% if(transaction.category == "food"){ %> selected <% } %> >Food</option>
-                  <option value="clothes" <% if(transaction.category == "clothes"){ %> selected <% } %> >Clothes</option>
-                  <option value="work" <% if(transaction.category == "work"){ %> selected <% } %>>Work</option>
-                  <option value="education" <% if(transaction.category == "education"){ %> selected <% } %> >Education</option>
-                  <option value="entertainment" <% if(transaction.category == "entertainment"){ %> selected <% } %> >Entertainment</option>
-                  <option value="other" <% if(transaction.category == "other"){ %> selected <% } %> >Other</option>
+                  <option value="food" <% if(transaction.category=="food" ){ %> selected <% } %> >Food</option>
+                  <option value="clothes" <% if(transaction.category=="clothes" ){ %> selected <% } %> >Clothes</option>
+                  <option value="work" <% if(transaction.category=="work" ){ %> selected <% } %>>Work</option>
+                  <option value="education" <% if(transaction.category=="education" ){ %> selected <% } %> >Education
+                  </option>
+                  <option value="entertainment" <% if(transaction.category=="entertainment" ){ %> selected <% } %>
+                      >Entertainment</option>
+                  <option value="transport" <% if(transaction.category=="transport" ){ %> selected <% } %>>Transport
+                  </option>
+                  <option value="other" <% if(transaction.category=="other" ){ %> selected <% } %> >Other</option>
                 </select>
               </div>
               <div class="input-group mb-3">
