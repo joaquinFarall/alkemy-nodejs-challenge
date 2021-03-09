@@ -15,6 +15,7 @@ CREATE TABLE transactions(
     id INT(11) NOT NULL AUTO_INCREMENT,
     amount INT(11) NOT NULL,
     type VARCHAR(10) NOT NULL,
+    category VARCHAR(50) NOT NULL,
     user_id INT(11) NOT NULL,
     date DATE NOT NULL,
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),

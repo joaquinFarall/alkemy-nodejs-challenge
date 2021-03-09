@@ -30,6 +30,16 @@
 <%= transaction.concept %></textarea>
               </div>
               <div class="input-group mb-3">
+                <select name="category" class="form-select custom-select p-1 w-100" required>
+                  <option value="food" <% if(transaction.category == "food"){ %> selected <% } %> >Food</option>
+                  <option value="clothes" <% if(transaction.category == "clothes"){ %> selected <% } %> >Clothes</option>
+                  <option value="work" <% if(transaction.category == "work"){ %> selected <% } %>>Work</option>
+                  <option value="education" <% if(transaction.category == "education"){ %> selected <% } %> >Education</option>
+                  <option value="entertainment" <% if(transaction.category == "entertainment"){ %> selected <% } %> >Entertainment</option>
+                  <option value="other" <% if(transaction.category == "other"){ %> selected <% } %> >Other</option>
+                </select>
+              </div>
+              <div class="input-group mb-3">
                 <input name="date" type="text" class="form-control" value="<%= transaction.date %>"
                   placeholder="Use yyyy-mm-dd format. Example: 2021-01-01" required maxlength="10" />
               </div>

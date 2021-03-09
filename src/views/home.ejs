@@ -55,8 +55,14 @@
               <th>Concept</th>
               <th>Type of transaction</th>
             </tr>
-            <% transactions.forEach( (transaction)=> { %>
-            <tr>
+            <% transactions.forEach( (transaction)=> { %> <%
+            if(transaction.type=="deposit" ){%>
+            <tr class="table-success">
+              <% }else{ %>
+            </tr>
+
+            <tr class="table-danger">
+              <% } %>
               <td><%= transaction.date %></td>
               <td>$<%= transaction.amount %></td>
               <td><%= transaction.concept %></td>

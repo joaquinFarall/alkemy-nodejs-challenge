@@ -118,6 +118,28 @@ router.get('/transactions/extractions', async (req, res) => {
     res.render('transactions', {h1, transactions});
 });
 
+router.get('/transactions/:category', async (req, res) => {
+    if(!req.session.loggedin){
+        req.flash('error_msg', 'Log in to access this page');
+        return res.redirect('/login');
+    }
+
+    let {category} = req.params;
+    let h1 = category.toUpperCase();
+
+    let user = req.session.user;
+
+    let query = 'SELECT * FROM transactions WHERE user_id = ? AND category = ?';
+    let transactions = await pool.query(query, [user.id, category]);
+
+    // format date to display
+    transactions.forEach((transaction) => {
+        transaction.date = formatDate(transaction.date);
+    })
+
+    res.render('transactions', {h1, transactions});
+});
+
 router.get('/transactions/edit/:id', async (req, res) => {
     if(!req.session.loggedin){
         req.flash('error_msg', 'Log in to access this page');
@@ -137,6 +159,11 @@ router.get('/transactions/edit/:id', async (req, res) => {
 });
 
 router.get('/transactions/delete/:id', async (req, res) => {
+    if(!req.session.loggedin){
+        req.flash('error_msg', 'Log in to access this page');
+        return res.redirect('/login');
+    }
+
     let {id} = req.params;
 
     let user = req.session.user;
@@ -170,7 +197,7 @@ router.get('/transactions/delete/:id', async (req, res) => {
 
 // POST routes
 router.post('/transactions/new', async (req, res) => {
-    let { amount, concept, type, date } = req.body;
+    let { amount, concept, type, category, date } = req.body;
 
     let user = req.session.user;
 
@@ -180,6 +207,12 @@ router.post('/transactions/new', async (req, res) => {
         return res.redirect('/transactions/new');
     }
     
+    // validate category
+    if(category == "null"){
+        req.flash('error_msg', "Please select the transaction's category");
+        return res.redirect('/transactions/new');
+    }
+
     // validate date
     if(!isValidDate(date)){
         req.flash('error_msg', 'Please insert a valid date');
@@ -207,6 +240,7 @@ router.post('/transactions/new', async (req, res) => {
         concept,
         amount,
         type,
+        category,
         user_id: user.id,
         date
     };
@@ -220,7 +254,7 @@ router.post('/transactions/new', async (req, res) => {
 });
 
 router.post('/transactions/edit/:id', async (req, res) => {
-    let {amount, concept, date} = req.body;
+    let {amount, concept, category, date} = req.body;
     let {id} = req.params;
 
     // validate amount
@@ -259,9 +293,9 @@ router.post('/transactions/edit/:id', async (req, res) => {
     await pool.query('UPDATE users SET balance = '+ balance +' WHERE id = ?', [user.id]);
 
     // update transaction
-    let query = 'UPDATE transactions SET concept = ?, amount = ?, date = ? WHERE id = ?';
+    let query = 'UPDATE transactions SET concept = ?, amount = ?, category = ?, date = ? WHERE id = ?';
 
-    await pool.query(query, [concept, amount, date, id]);
+    await pool.query(query, [concept, amount, category, date, id]);
 
     req.flash('success_msg', 'Transaction edited successfully');
     res.redirect('/transactions');
