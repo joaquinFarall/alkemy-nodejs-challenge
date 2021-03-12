@@ -195,6 +195,10 @@ router.get('/transactions/delete/:id', async (req, res) => {
     res.redirect('/transactions');
 });
 
+router.get('*', (req, res) => {
+    res.render('notfound', { session: req.session });
+});
+
 // POST routes
 router.post('/transactions/new', async (req, res) => {
     if (!req.session.loggedin) {

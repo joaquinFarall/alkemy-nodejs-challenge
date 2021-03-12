@@ -5,7 +5,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 
-const {database} = require('./connection');
+const { database } = require('./connection');
 
 // initializations
 const app = express();
@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 
 
 // middlewares
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({
     secret: 'alkemyChallenge',
@@ -34,13 +34,13 @@ app.use((req, res, next) => {
     next();
 });
 
+// public 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // routes
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use(require('./routes/transactions'));
-
-// public 
-app.use(express.static(path.join(__dirname, 'public')));
 
 // server
 app.listen(app.get('port'), () => {
